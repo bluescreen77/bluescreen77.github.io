@@ -1,0 +1,43 @@
+/* 위 막대 — 모든 페이지 공통 (애플식 두 줄: 위 줄 gnav, 키트 페이지만 아래 줄 lnav) */
+.gnav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.08);
+  font-family:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo",sans-serif;letter-spacing:-.01em}
+.gnav.flat{position:relative}
+.gnav .in{max-width:1000px;margin:auto;padding:0 22px;height:48px;display:flex;align-items:center;gap:16px}
+.gnav .logo{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;color:#1d1d1f;text-decoration:none;white-space:nowrap}
+.gnav .logo i{width:16px;height:16px;border-radius:4px;background:#0078d7}
+.gnav .links{display:flex;gap:30px;margin:0 auto;font-size:14px}
+.gnav .links a{color:#424245;text-decoration:none}
+.gnav .links a:hover,.gnav .links a[aria-current]{color:#1d1d1f}
+.gnav .cta{font-size:13px;font-weight:600;color:#fff;background:#0078d7;text-decoration:none;padding:6px 14px;border-radius:999px;white-space:nowrap}
+.gnav .cta:hover{background:#0063b1}
+.gnav .menu{display:none;margin-left:auto;width:40px;height:40px;border:0;background:none;cursor:pointer;position:relative;border-radius:8px}
+.gnav .menu span,.gnav .menu span::before{position:absolute;left:11px;right:11px;height:1.5px;background:#1d1d1f;content:"";transition:transform .2s}
+.gnav .menu span{top:16px}.gnav .menu span::before{left:0;right:0;top:7px}
+.gnav.open .menu span{transform:translateY(3.5px) rotate(45deg)}
+.gnav.open .menu span::before{transform:translateY(-7px) rotate(-90deg)}
+.gnav a:focus-visible,.gnav button:focus-visible,.lnav a:focus-visible{outline:3px solid #0078d7;outline-offset:2px;border-radius:6px}
+
+.lnav{position:sticky;top:0;z-index:15;background:rgba(255,255,255,.86);backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.08);
+  font-family:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo",sans-serif;letter-spacing:-.01em}
+.lnav .in{max-width:1000px;margin:auto;padding:0 22px;height:52px;display:flex;align-items:center;gap:22px}
+.lnav strong{font-size:19px;letter-spacing:-.02em;color:#1d1d1f;margin-right:auto;white-space:nowrap}
+.lnav a{font-size:12px;color:#424245;text-decoration:none;white-space:nowrap}
+.lnav a:hover{color:#1d1d1f}
+.lnav a.go{color:#fff;background:#0078d7;font-weight:600;padding:5px 13px;border-radius:999px}
+.lnav a.go:hover{background:#0063b1}
+
+@media (max-width:760px){
+  .gnav .links{display:none}
+  .gnav .menu{display:block}
+  .gnav .cta{display:none}
+  .gnav.open .links{display:flex;flex-direction:column;gap:0;position:absolute;left:0;right:0;top:48px;margin:0;
+    background:#fff;padding:12px 22px 28px;min-height:calc(100vh - 48px)}
+  .gnav.open .links a{font-size:26px;font-weight:650;color:#1d1d1f;padding:10px 0;letter-spacing:-.03em}
+  .gnav.open .links a.m-cta{display:block;color:#0078d7}
+  .lnav .in{gap:16px}
+  .lnav strong{font-size:17px}
+  .lnav a.pc{display:none}
+}
+.gnav .links a.m-cta{display:none}
