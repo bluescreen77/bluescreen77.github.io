@@ -54,15 +54,15 @@ a{color:inherit}
 /* 파란 화면 */
 .stage{max-width:1100px;margin:56px auto 0;padding:0 22px}
 .screen{background:var(--screen);color:#fff;border-radius:34px;overflow:hidden;
-  display:grid;grid-template-columns:1fr minmax(240px,40%);gap:24px;min-height:520px}
-.screen .txt{padding:clamp(32px,5vw,64px) 0 clamp(28px,4vw,48px) clamp(32px,5vw,64px);display:flex;flex-direction:column}
+  display:grid;grid-template-columns:1fr minmax(240px,40%);gap:24px;min-height:460px}
+.screen .txt{padding:clamp(32px,5vw,64px);padding-right:0;display:flex;flex-direction:column;justify-content:center}
 .screen .face{font-size:clamp(96px,14vw,170px);line-height:1;font-weight:300;letter-spacing:-.02em}
 .screen .eyes{display:inline-block;transform-origin:50% 55%}
 .screen .msg{margin-top:clamp(20px,3vw,34px);font-size:clamp(20px,2.4vw,28px);line-height:1.45}
 .screen .prog{margin-top:clamp(14px,2.4vw,24px);font-size:clamp(14px,1.6vw,18px);opacity:.85}
 .screen .note{margin-top:auto;padding-top:28px;display:flex;gap:14px;align-items:center;font-size:13px;opacity:.9}
 .screen .note b{flex:none;width:52px;height:52px;background:#fff;border-radius:8px;display:grid;place-items:center;color:var(--screen);font-size:22px}
-.screen .pose{align-self:end;--disc:rgba(255,255,255,.16);margin-right:clamp(16px,4vw,48px)}
+.screen .pose{align-self:end;--disc:rgba(255,255,255,.16);margin:clamp(32px,4vw,48px) clamp(16px,4vw,48px) 0 0;width:min(100%,400px);justify-self:end}
 @media (prefers-reduced-motion:no-preference){
   .screen .eyes{animation:blink 4.2s infinite}
   @keyframes blink{0%,88%,100%{transform:scaleY(1)}91%{transform:scaleY(.08)}94%{transform:scaleY(1)}}
@@ -80,11 +80,11 @@ section{padding:110px 22px}
 .kit{background:var(--mist);border-radius:30px;margin-top:56px;display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:end;overflow:hidden}
 .kit .txt{padding:clamp(32px,5vw,60px)}
 .kit .tag{display:inline-block;font-size:13px;font-weight:600;color:var(--screen);background:var(--sky);padding:4px 10px;border-radius:999px}
-.kit h3{font-size:clamp(28px,3.6vw,40px);line-height:1.15;letter-spacing:-.035em;margin-top:14px}
+.kit h3{font-size:clamp(28px,3.6vw,40px);line-height:1.15;letter-spacing:-.035em}
 .kit p{color:var(--mute);margin-top:12px;font-size:18px;line-height:1.5}
-.kit ul{list-style:none;padding:0;margin:22px 0 28px;display:grid;gap:10px}
-.kit li{display:flex;gap:12px;align-items:baseline;font-size:17px}
-.kit li span{flex:none;font-weight:700;min-width:3.2em}
+.kit ul{list-style:none;padding:0;margin:28px 0 32px;display:flex;gap:clamp(20px,4vw,40px)}
+.kit li{font-size:14px;color:var(--mute)}
+.kit li b{display:block;font-size:28px;letter-spacing:-.03em;color:var(--ink)}
 .kit .pose{justify-self:center;width:min(360px,88%);--disc:#e8e8ed}
 
 /* 받는 법 */
@@ -101,7 +101,7 @@ section{padding:110px 22px}
 .end{background:var(--screen);color:#fff;text-align:center;padding:96px 22px 0;overflow:hidden}
 .end .h2{color:#fff}
 .end p{opacity:.88;font-size:19px;margin-top:14px;line-height:1.5}
-.end .btn{background:#fff;color:var(--screen);margin-top:28px}
+.end .btn{background:#fff;color:var(--screen);margin-top:32px}
 .end .btn:hover{background:#eaf3fc}
 .end .pose{width:220px;margin:48px auto 0;--disc:rgba(255,255,255,.16)}
 footer{font-size:12px;color:var(--mute);background:var(--mist);padding:22px}
@@ -138,21 +138,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </div></nav>
 
 <header class="hero">
-  <h1>AI로 만들고,<br>켜 두고, 다 보여 줘요.</h1>
-  <p class="sub">개발자가 아니어도<br>클로드로 직접 만든 것들.<br>쓴 프롬프트는 무료로 나눠 드려요.</p>
-  <div class="ctas">
-    <a class="btn" href="edit/">편집 키트 받기</a>
-    <a class="link" href="https://www.instagram.com/bluescreen.ai/" rel="noopener">릴스 보러 가기</a>
-  </div>
+  <h1>AI로 직접 만들고,<br>다 보여 줘요.</h1>
+  <p class="sub">쓴 프롬프트는 무료로 나눠 드려요.</p>
 </header>
 
 <div class="stage">
   <div class="screen">
     <div class="txt">
       <div class="face" aria-hidden="true"><span class="eyes">:</span>)</div>
-      <p class="msg">문제가 생겨도 괜찮아요.<br>고치는 과정까지<br>같이 보여 드릴게요.</p>
-      <p class="prog">100% 완료</p>
-      <div class="note"><b aria-hidden="true">:)</b><span>멈춘 화면 말고,<br>끝까지 돌아가는 걸 만듭니다.</span></div>
+      <p class="msg">에러가 나도 괜찮아요.</p>
     </div>
     <span class="pose"><img src="img/wave.webp" alt="손을 흔드는 블루스크린 캐릭터" width="653" height="900"></span>
   </div>
@@ -160,18 +154,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <section id="kits">
   <div class="wrap">
-    <h2 class="h2">복사해서 바로 쓰는 키트</h2>
-    <p class="lead">릴스에서 보여 준 그대로 따라 할 수 있게,<br>쓴 프롬프트와 파일을 정리해 뒀어요.</p>
-
+    <h2 class="h2">무료 키트</h2>
     <article class="kit">
       <div class="txt">
-        <span class="tag">무료</span>
-        <h3>클로드 영상 편집 키트</h3>
-        <p>편집 프로그램 없이,<br>클로드에게 붙여 넣는 것만으로<br>릴스 한 편.</p>
+        <h3>영상 편집 키트</h3>
+        <p>편집 프로그램 없이<br>클로드로 릴스 한 편.</p>
         <ul>
-          <li><span>5줄</span>순서대로 붙여 넣는 프롬프트</li>
-          <li><span>1개</span>색·글꼴·자막 위치를 고정하는 스타일 파일</li>
-          <li><span>14개</span>「멋있게」 대신 쓰는 효과 이름</li>
+          <li><b>5줄</b>프롬프트</li>
+          <li><b>1개</b>스타일 파일</li>
+          <li><b>14개</b>효과 이름</li>
         </ul>
         <a class="btn" href="edit/">키트 받기</a>
       </div>
@@ -182,20 +173,18 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <section class="how" id="how">
   <div class="wrap">
-    <h2 class="h2">키트 받는 법</h2>
-    <p class="lead">릴스마다 키워드가 하나씩 있어요.</p>
+    <h2 class="h2">받는 법</h2>
     <ol class="steps">
-      <li><div><span class="n">1</span><h3>릴스를 봐요</h3><p>끝에 나오는 키워드를<br>기억해 두세요.</p></div><span class="pose"><img src="img/one.webp" alt="" width="272" height="420" loading="lazy"></span></li>
-      <li><div><span class="n">2</span><h3>댓글을 남겨요</h3><p>예를 들어 <code>편집</code><br>한 단어면 돼요.</p></div><span class="pose"><img src="img/phone.webp" alt="" width="322" height="420" loading="lazy"></span></li>
-      <li><div><span class="n">3</span><h3>DM으로 받아요</h3><p>링크가 바로 와요.<br>안 보이면 메시지 요청함을<br>확인하세요.</p></div><span class="pose"><img src="img/thumb.webp" alt="" width="282" height="420" loading="lazy"></span></li>
+      <li><div><span class="n">1</span><h3>릴스 보기</h3><p>끝에 키워드가 나와요.</p></div><span class="pose"><img src="img/one.webp" alt="" width="272" height="420" loading="lazy"></span></li>
+      <li><div><span class="n">2</span><h3>댓글 남기기</h3><p>예: <code>편집</code></p></div><span class="pose"><img src="img/phone.webp" alt="" width="322" height="420" loading="lazy"></span></li>
+      <li><div><span class="n">3</span><h3>DM 확인</h3><p>링크가 바로 와요.</p></div><span class="pose"><img src="img/thumb.webp" alt="" width="282" height="420" loading="lazy"></span></li>
     </ol>
   </div>
 </section>
 
 <section class="end">
-  <h2 class="h2">새 키트 소식 받기</h2>
-  <p>@bluescreen.ai 를 팔로우하면<br>제일 먼저 알 수 있어요.</p>
-  <a class="btn" href="https://www.instagram.com/bluescreen.ai/" rel="noopener">인스타그램 팔로우</a>
+  <h2 class="h2">새 키트는 인스타그램에서</h2>
+  <a class="btn" href="https://www.instagram.com/bluescreen.ai/" rel="noopener">@bluescreen.ai 팔로우</a>
   <span class="pose"><img src="img/v.webp" alt="" width="379" height="520" loading="lazy"></span>
 </section>
 
