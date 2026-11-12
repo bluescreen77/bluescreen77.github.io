@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>효과 7개 키트 · 블루스크린 AI</title>
+<meta name="description" content="편집 프로그램 없이 클로드로 넣는 효과 7개 — 이름과 한 줄 프롬프트. 무료.">
+<link rel="icon" href="/edit/img/icon.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+:root{--ink:#1d1d1f;--sub:#48484d;--mute:#6e6e73;--line:#e8e8ed;--mist:#f5f5f7;--blue:#0078d7;--deep:#0063b1;--sky:#e8f2fc;--ok:#2f9e5a}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-padding-top:70px;scroll-behavior:smooth}
+body{font-family:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo",sans-serif;color:var(--ink);background:#fff;font-size:17px;line-height:1.7;letter-spacing:-.01em;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+a{color:var(--blue)}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:8px}
+code{font:600 .82em ui-monospace,Consolas,monospace;background:var(--sky);color:var(--deep);padding:2px 6px;border-radius:6px}
+.wrap{max-width:640px;margin:0 auto}
+/* 위 막대 한 줄 + 진행 */
+.top{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{height:56px;display:flex;align-items:center;gap:10px;padding:0 18px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:var(--ink);text-decoration:none}
+.logo i{width:18px;height:18px;border-radius:5px;background:var(--blue)}
+.prog{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--mute)}
+.dots{display:flex;gap:4px}.dots b{width:8px;height:8px;border-radius:50%;background:#d7d7dc;transition:background .2s}.dots b.on{background:var(--ok)}
+/* 첫 화면 */
+.hero{padding:26px 20px 8px;position:relative}
+.tag{display:inline-block;font-size:13px;font-weight:700;color:var(--blue);background:var(--sky);padding:5px 11px;border-radius:999px}
+h1{font-size:30px;line-height:1.28;letter-spacing:-.035em;margin-top:14px;font-weight:800;padding-right:96px}
+h1 u{text-decoration:none;box-shadow:inset 0 -10px 0 rgba(0,120,215,.22)}
+.lead{color:var(--sub);margin-top:10px}
+.hero .wave{position:absolute;right:12px;top:16px;width:96px;height:auto}
+.gets{margin-top:20px;display:grid;gap:10px}
+.get{display:flex;align-items:center;gap:12px;background:var(--mist);border-radius:16px;padding:14px 16px;font-weight:600;font-size:16px;line-height:1.45}
+.get b{flex:none;width:36px;height:36px;border-radius:10px;background:#fff;display:grid;place-items:center;font-size:18px}
+.get small{display:block;font-weight:500;color:var(--mute);font-size:13.5px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:16px;font-size:14px;color:var(--mute);font-weight:600}
+.meta span::before{content:"✓ ";color:var(--blue)}
+.cta{display:block;text-align:center;margin-top:20px;background:var(--blue);color:#fff;font-weight:700;font-size:17px;padding:16px;border-radius:16px;text-decoration:none}
+.cta:hover{background:var(--deep)}
+.proof{margin-top:12px;font-size:13.5px;color:var(--mute);line-height:1.55}
+/* 구역 */
+.sec{padding:34px 20px 0}
+h2{font-size:22px;letter-spacing:-.03em;font-weight:800}
+.need{margin-top:12px;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.need div{display:flex;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line);font-size:16px;line-height:1.5}
+.need div:last-child{border:0}
+.need b{flex:none;width:20px;color:var(--blue);font-weight:800}
+.need small{display:block;color:var(--mute);font-size:14px;margin-top:2px}
+/* 단계 카드 */
+.steps{display:grid;gap:14px;margin-top:14px}
+.step{border:1px solid var(--line);border-radius:20px;padding:18px 18px 16px;transition:border-color .2s,background .2s}
+.step.done{border-color:#bfe3cc;background:#fbfefc}
+.sh{display:flex;align-items:center;gap:12px}
+.num{flex:none;width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;font-size:15px;display:grid;place-items:center}
+.step.done .num{background:var(--ok);font-size:0}.step.done .num::after{content:"✓";font-size:16px}
+.sh h3{font-size:18px;line-height:1.35;letter-spacing:-.02em}
+.what{color:var(--sub);font-size:15.5px;margin:8px 0 12px 44px;line-height:1.55}
+.prev{margin-left:44px;background:var(--mist);border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.6;color:var(--sub);position:relative;max-height:70px;overflow:hidden;white-space:pre-wrap}
+.prev::after{content:"";position:absolute;left:0;right:0;bottom:0;height:30px;background:linear-gradient(transparent,var(--mist))}
+.prev.open{max-height:none}.prev.open::after{display:none}
+.row{display:flex;gap:8px;margin:12px 0 0 44px}
+.copy{flex:1;background:var(--blue);color:#fff;border:0;border-radius:12px;padding:12px;font-weight:700;font-size:16px}
+.copy:hover{background:var(--deep)}
+.step.done .copy{background:var(--ok)}
+.more{flex:none;background:#fff;color:var(--sub);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-weight:600;font-size:14px}
+.tip{margin:12px 0 0 44px;display:flex;gap:8px;font-size:14px;color:#0b4f8a;background:var(--sky);border-radius:12px;padding:10px 12px;line-height:1.55}
+.tip::before{content:"💡";flex:none}
+/* 효과 사전 */
+.lead2{color:var(--mute);font-size:14.5px;margin-top:6px;line-height:1.55}
+.fx{margin-top:12px;display:grid;gap:8px}
+.fxi{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff;text-align:left;color:var(--ink)}
+.fxi span{font-weight:600;font-size:15.5px;line-height:1.4}
+.fxi small{display:block;font-weight:500;color:var(--mute);font-size:13px;margin-top:2px}
+.fxi code{flex:none;font-size:13px;padding:6px 10px;border-radius:8px}
+.fxi.got code{background:#dff3e6;color:#1d6b3c}
+.note{font-size:14px;color:var(--mute);margin-top:12px;line-height:1.6}
+.more-item{display:none}.showall .more-item{display:flex}.showall details.more-item{display:block}
+.morebtn{display:block;width:100%;margin-top:12px;background:var(--mist);border:0;border-radius:12px;padding:12px;font-weight:600;font-size:15px;color:var(--sub)}
+/* 막히면 */
+.faq{margin-top:12px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;padding:14px 30px 14px 2px;font-weight:600;font-size:16px;position:relative;cursor:pointer;line-height:1.5}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"＋";position:absolute;right:4px;top:14px;color:var(--mute);font-weight:400}
+.faq details[open] summary::after{content:"－"}
+.faq details p{color:var(--sub);font-size:15px;padding:0 2px 14px;line-height:1.65}
+/* 끝 */
+.end{margin:36px 20px 24px;background:var(--ink);color:#fff;border-radius:24px;padding:24px 22px;position:relative;overflow:hidden}
+.end b{font-size:20px;display:block;letter-spacing:-.02em}
+.end p{color:#c7c7cc;font-size:15px;margin-top:8px;line-height:1.6;padding-right:84px}
+.end a{color:#7cc0ff}
+.end img{position:absolute;right:-4px;bottom:-4px;width:96px;height:auto}
+footer{text-align:center;font-size:13px;color:var(--mute);padding:0 20px 96px}
+/* 아래 고정 바 */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:10;background:rgba(255,255,255,.96);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .25s}
+.dock.on{transform:none}
+.dock .wrap{display:flex;gap:10px;align-items:center;padding:10px 16px calc(12px + env(safe-area-inset-bottom))}
+.dock small{font-size:13.5px;color:var(--mute);font-weight:600;flex:1}
+.dock button{background:var(--blue);color:#fff;border:0;border-radius:12px;padding:11px 16px;font-weight:700;font-size:15px}
+.toast{position:fixed;left:50%;bottom:86px;transform:translate(-50%,20px);background:var(--ink);color:#fff;border-radius:999px;padding:10px 18px;font-size:14px;font-weight:600;opacity:0;transition:.2s;z-index:20;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media (min-width:700px){h1{font-size:38px}.hero .wave{width:130px}}
+.step .shot{display:block;width:calc(100% - 44px);max-width:360px;height:auto;margin:0 0 12px 44px;border-radius:14px;box-shadow:0 0 0 1px var(--line)}
+.sh h3 code{font-size:12px;vertical-align:middle;margin-left:4px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="/"><i></i>블루스크린 AI</a><span class="prog" aria-label="진행"><span id="pc">0 / 7</span><span class="dots" id="dots"><b></b><b></b><b></b><b></b><b></b><b></b><b></b></span></span></div></header>
+<main class="wrap">
+<section class="hero">
+  <span class="tag">무료 키트</span>
+  <img class="wave" src="/edit/img/wave.webp" width="240" height="320" alt="">
+  <h1>편집 프로그램 없이<br>넣는 <u>효과 7개</u></h1>
+  <p class="lead">이름만 말하면 그대로 나와요.<br>효과마다 붙여 넣는 한 줄이에요.</p>
+  <div class="gets">
+    <div class="get"><b>🎬</b><div>효과 7개 미리보기<small>세로 화면에서 직접 뽑아 본 것만</small></div></div>
+    <div class="get"><b>📋</b><div>효과마다 한 줄 프롬프트<small>복사 → 클로드에 붙여 넣기</small></div></div>
+    <div class="get"><b>🛟</b><div>막히면 FAQ 5개<small>색·영어 글자·가로 효과</small></div></div>
+  </div>
+  <div class="meta"><span>세로 1080×1920</span><span>한글 됨</span><span>무료 도구</span></div>
+  <a class="cta" href="#ready">1번부터 보기 ↓</a>
+  <p class="proof">빈 폴더에서 HyperFrames 0.8.206 효과 10개를 세로로 뽑아 보고, 바로 된 7개만 넣었어요 (윈도우 11, 2026-11-12).</p>
+</section>
+
+<section class="sec" id="ready">
+  <h2>먼저 준비물</h2>
+  <div class="need">
+    <div><b>1</b><span>클로드 영상 스타터팩의 1번까지<small>Claude Code · 새 폴더 · 도구 깔기 — 1편 댓글 「편집」으로 받는 스타터팩에 있어요</small></span></div>
+    <div><b>2</b><span>장면이 하나라도 있는 프로젝트<small>효과는 장면 위에 얹는 거예요</small></span></div>
+  </div>
+</section>
+
+<section class="sec">
+  <h2>효과 7개</h2>
+  <div class="steps">
+<article class="step" id="s1" data-i="1">
+  <div class="sh"><span class="num">1</span><h3>휩 팬 <code>whip-pan-cut</code></h3></div>
+  <p class="what">장면을 넘길 때 · 이렇게 보여요 ↓</p>
+  <img class="shot" src="img/whip.webp" width="480" height="480" alt="휩 팬 미리보기" loading="lazy">
+  <div class="prev" id="p1">npx hyperframes add whip-pan-cut --no-clipboard 로 넣고, 2번 장면에서 3번 장면으로 넘어갈 때 휩 팬(whip-pan-cut)으로 휙 넘겨 줘.</div>
+  <div class="row"><button class="copy" data-i="1">프롬프트 복사</button><button class="more" aria-expanded="false" aria-controls="p1">전체 보기</button></div>
+  <p class="tip"><span>부품 길이가 1.2초예요. 장면이 길면 끝쪽에 붙여 달라고 하세요.</span></p>
+</article>
+<article class="step" id="s2" data-i="2">
+  <div class="sh"><span class="num">2</span><h3>숫자 올라가기 <code>count-up</code></h3></div>
+  <p class="what">숫자를 강조할 때 · 이렇게 보여요 ↓</p>
+  <img class="shot" src="img/count.webp" width="480" height="480" alt="숫자 올라가기 미리보기" loading="lazy">
+  <div class="prev" id="p2">npx hyperframes add count-up --no-clipboard 로 넣고, 「12분」이 0부터 올라가게 해 줘(suffix 는 분). 강조색은 스타일.md 의 강조색으로.</div>
+  <div class="row"><button class="copy" data-i="2">프롬프트 복사</button><button class="more" aria-expanded="false" aria-controls="p2">전체 보기</button></div>
+  <p class="tip"><span>색을 바꿀 때 accent 에 blue 를 넣으면 진한 원색 파랑이 나와요. accent 는 green 으로 두고 --brand 에 내 색을 넣으세요.</span></p>
+</article>
+<article class="step" id="s3" data-i="3">
+  <div class="sh"><span class="num">3</span><h3>제목이 쾅 <code>headline-slam</code></h3></div>
+  <p class="what">첫 장면 훅 · 이렇게 보여요 ↓</p>
+  <img class="shot" src="img/headline.webp" width="480" height="480" alt="제목이 쾅 미리보기" loading="lazy">
+  <div class="prev" id="p3">npx hyperframes add headline-slam --no-clipboard 로 넣고, 첫 장면 제목 「AI 티 왜?」가 쾅 떨어지게 해 줘. 「왜?」만 강조색, 그림자는 꺼 줘.</div>
+  <div class="row"><button class="copy" data-i="3">프롬프트 복사</button><button class="more" aria-expanded="false" aria-controls="p3">전체 보기</button></div>
+  <p class="tip"><span>글자가 흐리면 --fg 를 진한 색으로 지정해 달라고 하세요(기본이 흰색이에요).</span></p>
+</article>
+<article class="step" id="s4" data-i="4">
+  <div class="sh"><span class="num">4</span><h3>형광펜 <code>inline-highlight</code></h3></div>
+  <p class="what">핵심 한 낱말 · 이렇게 보여요 ↓</p>
+  <img class="shot" src="img/inline.webp" width="480" height="480" alt="형광펜 미리보기" loading="lazy">
+  <div class="prev" id="p4">npx hyperframes add inline-highlight --no-clipboard 로 넣고, 자막에서 「그대로」에만 형광펜이 왼쪽부터 그어지게 해 줘.</div>
+  <div class="row"><button class="copy" data-i="4">프롬프트 복사</button><button class="more" aria-expanded="false" aria-controls="p4">전체 보기</button></div>
+  <p class="tip"><span>한 장면에 한 낱말만 칠해야 눈에 들어와요.</span></p>
+</article>
+<article class="step" id="s5" data-i="5">
+  <div class="sh"><span class="num">5</span><h3>커서 따라 줌 <code>cursor-zoom-follow</code></h3></div>
+  <p class="what">화면을 설명할 때 · 이렇게 보여요 ↓</p>
+  <img class="shot" src="img/cursor.webp" width="480" height="480" alt="커서 따라 줌 미리보기" loading="lazy">
+  <div class="prev" id="p5">npx hyperframes add cursor-zoom-follow --no-clipboard 로 넣고, 커서가 누르는 곳을 따라 화면이 확대되게 해 줘. 세로 화면 칸에 맞춰서.</div>
+  <div class="row"><button class="copy" data-i="5">프롬프트 복사</button><button class="more" aria-expanded="false" aria-controls="p5">전체 보기</button></div>
+  <p class="tip"><span>기본 화면은 영어 대시보드예요. 내 화면 캡처로 바꿔 달라고 하세요.</span></p>
+</article>
+<article class="step" id="s6" data-i="6">
+  <div class="sh"><span class="num">6</span><h3>초점 이동 <code>focus-rack</code></h3></div>
+  <p class="what">둘을 비교할 때 · 이렇게 보여요 ↓</p>
+  <img class="shot" src="img/focus.webp" width="480" height="480" alt="초점 이동 미리보기" loading="lazy">
+  <div class="prev" id="p6">npx hyperframes add focus-rack --no-clipboard 로 넣고, 「전」 카드에서 「후」 카드로 초점이 넘어가게 해 줘. 카드 글자는 한국어로.</div>
+  <div class="row"><button class="copy" data-i="6">프롬프트 복사</button><button class="more" aria-expanded="false" aria-controls="p6">전체 보기</button></div>
+  <p class="tip"><span>기본 카드 글자는 Draft·Published 예요. 바꿀 낱말을 같이 말하세요.</span></p>
+</article>
+<article class="step" id="s7" data-i="7">
+  <div class="sh"><span class="num">7</span><h3>원으로 열기 <code>iris-reveal</code></h3></div>
+  <p class="what">결과를 공개할 때 · 이렇게 보여요 ↓</p>
+  <img class="shot" src="img/iris.webp" width="480" height="480" alt="원으로 열기 미리보기" loading="lazy">
+  <div class="prev" id="p7">npx hyperframes add iris-reveal --no-clipboard 로 넣고, 마지막 장면에서 완성 화면이 가운데 원으로 열리며 나오게 해 줘.</div>
+  <div class="row"><button class="copy" data-i="7">프롬프트 복사</button><button class="more" aria-expanded="false" aria-controls="p7">전체 보기</button></div>
+  <p class="tip"><span>before 칸에 지금 화면, after 칸에 완성 화면을 넣는다고 말하면 돼요.</span></p>
+</article>
+  </div>
+</section>
+
+<section class="sec" id="faq">
+  <h2>막히면</h2>
+  <div class="faq" id="fq">
+<details><summary>1편 스타터팩 없이 이것만 써도 되나요?</summary><p>클로드 영상 스타터팩의 1번(도구 깔기)은 먼저 해 두세요. 프로젝트 폴더가 있어야 효과를 넣을 수 있어요.</p></details>
+<details><summary>색이 원색 파랑으로 나와요</summary><p>accent 에 blue 를 넣으면 HyperFrames 가 --accent 를 「blue」 글자로 덮어써요. accent 는 green 으로 두고 --brand 에 내 색(예: #0078D7)을 넣으세요.</p></details>
+<details><summary>영어 글자가 나와요</summary><p>부품 기본 화면이 영어예요. 「카드 글자를 한국어로」 「내 화면 캡처로」처럼 바꿀 것을 같이 말하세요.</p></details>
+<details><summary>세로 화면에서 깨지는 효과도 있나요?</summary><p>caption-highlight · caption-kinetic-slam · camera-shake 는 가로(1920×1080) 전용이라 세로에서 깨졌어요. 그래서 이 키트에서 뺐어요.</p></details>
+<details><summary>다른 효과도 있어요?</summary><p><code>npx hyperframes catalog</code> 로 448개를 볼 수 있어요. 세로에서 되는지는 직접 확인해 보세요.</p></details>
+  </div>
+</section>
+
+<div class="end"><b>이 키트는 무료예요.</b><p>돈 받지 않습니다. 세로에서 되는 효과를 더 찾으면 여기에 더할게요.<br><a href="https://www.instagram.com/bluescreen.ai/" rel="noopener">@bluescreen.ai</a> 팔로우하면 다음 키트도 받아요 · <a href="/">bluescreen.page</a></p><img src="/edit/img/v.webp" width="240" height="320" alt=""></div>
+</main>
+<footer>2026-11-12 · 블루스크린 AI</footer>
+
+<div class="dock" id="dock"><div class="wrap"><small id="dl">0개 끝 · 7개 남았어요</small><button id="db">1번 프롬프트 복사</button></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite">복사했어요</div>
+
+<script>
+(() => {
+  const KEY = 'kit-effects-done', toast = document.getElementById('toast');
+  let done = [];
+  try { done = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) {}
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} };
+  async function copy(text) {
+    try { await navigator.clipboard.writeText(text); } catch (e) {
+      const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove();
+    }
+    toast.classList.add('on'); clearTimeout(copy.t); copy.t = setTimeout(() => toast.classList.remove('on'), 1400);
+  }
+  function paint() {
+    document.querySelectorAll('.step').forEach(s => {
+      const on = done.includes(+s.dataset.i);
+      s.classList.toggle('done', on);
+      s.querySelector('.copy').textContent = on ? '✓ 복사했어요' : '프롬프트 복사';
+    });
+    document.querySelectorAll('#dots b').forEach((b, k) => b.classList.toggle('on', done.includes(k + 1)));
+    document.getElementById('pc').textContent = done.length + ' / 7';
+    const next = [1, 2, 3, 4, 5, 6, 7].find(i => !done.includes(i));
+    document.getElementById('dl').textContent = next ? `${done.length}개 끝 · ${7 - done.length}개 남았어요` : '7개 모두 끝! 🎉';
+    const db = document.getElementById('db');
+    db.textContent = next ? `${next}번 프롬프트 복사` : '막히면 보기';
+    db.dataset.i = next || '';
+  }
+  function copyStep(i) {
+    copy(document.getElementById('p' + i).textContent.trim());
+    if (!done.includes(i)) done.push(i);
+    save(); paint();
+  }
+  document.querySelectorAll('.copy').forEach(b => b.addEventListener('click', () => copyStep(+b.dataset.i)));
+  document.querySelectorAll('.more').forEach(b => b.addEventListener('click', () => {
+    const p = document.getElementById(b.getAttribute('aria-controls')), o = p.classList.toggle('open');
+    b.setAttribute('aria-expanded', o); b.textContent = o ? '접기' : '전체 보기';
+  }));
+  document.querySelectorAll('.fxi').forEach(b => b.addEventListener('click', () => { copy(b.dataset.copy); b.classList.add('got'); }));
+  document.querySelectorAll('.morebtn').forEach(b => b.addEventListener('click', () => {
+    document.getElementById(b.dataset.for).classList.add('showall'); b.remove();
+  }));
+  document.getElementById('db').addEventListener('click', e => {
+    const i = +e.currentTarget.dataset.i;
+    if (i) { copyStep(i); document.getElementById('s' + i).scrollIntoView({block: 'center'}); }
+    else document.getElementById('faq').scrollIntoView();
+  });
+  // 첫 화면을 지나면 아래 바를 띄운다
+  const dock = document.getElementById('dock');
+  new IntersectionObserver(([e]) => dock.classList.toggle('on', !e.isIntersecting)).observe(document.querySelector('.cta'));
+  paint();
+})();
+</script>
+</body>
+</html>
