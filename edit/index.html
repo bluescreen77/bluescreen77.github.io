@@ -29,7 +29,7 @@ mark { background:linear-gradient(transparent 58%, rgba(0,120,215,.25) 58%); col
 .lead { color:var(--sub); margin:0 0 16px; }
 .hero .me { align-self:end; position:relative; }
 .hero .me img { width:100%; height:auto; }
-.hero .me .bubble { position:absolute; top:-6px; right:96px; white-space:nowrap; }
+.hero .me .bubble { width:max-content; margin:0 auto 12px; white-space:nowrap; }
 .chips { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 20px; }
 .chips span { background:#f4f5f8; border:1px solid var(--line); border-radius:999px; padding:3px 11px; font-weight:700; font-size:13px; }
 
@@ -37,7 +37,7 @@ mark { background:linear-gradient(transparent 58%, rgba(0,120,215,.25) 58%); col
 .bubble { position:relative; background:var(--card); border:2px solid var(--ink); border-radius:16px; padding:10px 14px; font-size:15px; line-height:1.55; margin:0; }
 .bubble::after { content:""; position:absolute; right:-9px; bottom:18px; width:14px; height:14px; background:var(--card); border:2px solid var(--ink); border-left:0; border-bottom:0; transform:rotate(45deg); }
 .hero .bubble { font-weight:800; font-size:14px; padding:6px 12px; }
-.hero .bubble::after { right:-8px; bottom:auto; top:12px; width:12px; height:12px; }
+.hero .bubble::after { right:auto; left:calc(50% - 6px); bottom:-8px; top:auto; width:12px; height:12px; transform:rotate(135deg); }
 
 /* 단계 */
 h2 { font-size:21px; margin:44px 0 12px; letter-spacing:-.3px; display:flex; align-items:center; gap:10px; }
@@ -185,7 +185,7 @@ footer { margin-top:16px; color:var(--sub); font-size:13px; text-align:center; }
   <div>
     <p class="free">이 키트는 무료예요. 돈 받지 않습니다.</p>
     <p>더 좋은 방법을 찾으면 이 페이지를 고쳐 둘게요.</p>
-    <p class="next">다음 편: <b>효과 17개, 편집 0번</b> — 인스타 <a href="https://www.instagram.com/bluescreen.ai/">@bluescreen.ai</a></p>
+    <p class="next">다른 키트: <a href="/">bluescreen.page</a> · 인스타 <a href="https://www.instagram.com/bluescreen.ai/">@bluescreen.ai</a></p>
   </div>
   <img src="img/v.webp" width="233" height="320" alt="브이 하는 블루스크린 캐릭터">
 </section>
