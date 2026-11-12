@@ -12,10 +12,10 @@
 <style>
 :root{
   --paper:#fff; --mist:#f5f5f7; --ink:#1d1d1f; --mute:#6e6e73; --line:#d2d2d7;
-  --screen:#0078d7; --screen-deep:#0063b1;
+  --screen:#0078d7; --screen-deep:#0063b1; --sky:#e3effa;
 }
 *{box-sizing:border-box;margin:0}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:64px}
 body{font-family:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo",sans-serif;
   color:var(--ink);background:var(--paper);font-size:17px;line-height:1.55;letter-spacing:-.01em;
   word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
@@ -24,62 +24,68 @@ a{color:inherit}
 :focus-visible{outline:3px solid var(--screen);outline-offset:3px;border-radius:6px}
 
 /* 위 막대 */
-.nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.78);backdrop-filter:saturate(180%) blur(20px);
-  -webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
-.nav .in{max-width:1000px;margin:auto;padding:0 22px;height:48px;display:flex;align-items:center;gap:28px;font-size:14px}
-.brand{display:flex;align-items:center;gap:8px;font-weight:650;text-decoration:none;margin-right:auto}
-.brand i{width:14px;height:14px;background:var(--screen);border-radius:3px}
-.nav a.l{text-decoration:none;color:#424245}
-.nav a.l:hover{color:var(--ink)}
+.nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.8);backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.08)}
+.nav .in{max-width:1100px;margin:auto;padding:0 22px;height:52px;display:flex;align-items:center}
+.brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;text-decoration:none;letter-spacing:-.02em}
+.brand i{width:16px;height:16px;background:var(--screen);border-radius:4px}
+.menu{display:flex;gap:30px;margin:0 auto;font-size:14px}
+.menu a{text-decoration:none;color:#424245}
+.menu a:hover{color:var(--ink)}
+.nav .get{font-size:13px;font-weight:600;text-decoration:none;color:#fff;background:var(--screen);padding:6px 14px;border-radius:999px}
+.nav .get:hover{background:var(--screen-deep)}
 
 /* 첫 화면 */
-.hero{text-align:center;padding:76px 22px 0}
-.hero h1{font-size:clamp(40px,7.2vw,80px);line-height:1.05;letter-spacing:-.045em;font-weight:720}
-.hero p.sub{font-size:clamp(19px,2.3vw,24px);color:var(--mute);margin:18px auto 0;max-width:30em;line-height:1.4;letter-spacing:-.02em}
-.ctas{display:flex;gap:14px;justify-content:center;align-items:center;margin-top:30px;flex-wrap:wrap}
+.hero{text-align:center;padding:80px 22px 0}
+.hero h1{font-size:clamp(40px,7.2vw,80px);line-height:1.08;letter-spacing:-.045em;font-weight:720}
+.hero p.sub{font-size:clamp(19px,2.3vw,24px);color:var(--mute);margin:20px auto 0;line-height:1.45;letter-spacing:-.02em}
+.ctas{display:flex;gap:16px;justify-content:center;align-items:center;margin-top:30px;flex-wrap:wrap}
 .btn{display:inline-block;background:var(--screen);color:#fff;text-decoration:none;font-weight:560;
   padding:12px 24px;border-radius:999px;font-size:17px}
 .btn:hover{background:var(--screen-deep)}
 .link{color:var(--screen);text-decoration:none;font-size:17px}
 .link:hover{text-decoration:underline}
 
-/* 화면 = 이 페이지의 한 가지 큰 장면 */
+/* 캐릭터 뒤 동그라미 */
+.pose{position:relative;display:block}
+.pose::before{content:"";position:absolute;left:6%;right:6%;bottom:0;aspect-ratio:1;border-radius:50%;background:var(--disc,var(--sky))}
+.pose img{position:relative}
+
+/* 파란 화면 */
 .stage{max-width:1100px;margin:56px auto 0;padding:0 22px}
-.screen{position:relative;background:var(--screen);color:#fff;border-radius:34px;overflow:hidden;
-  aspect-ratio:16/9;min-height:420px;padding:clamp(28px,5vw,64px)}
-.screen .face{font-size:clamp(90px,15vw,180px);line-height:1;font-weight:300;letter-spacing:-.02em}
-.screen .msg{margin-top:clamp(18px,3vw,34px);font-size:clamp(18px,2.4vw,28px);line-height:1.45;max-width:17em;font-weight:400}
-.screen .prog{margin-top:clamp(16px,2.6vw,28px);font-size:clamp(14px,1.6vw,18px);opacity:.85}
-.screen .qr{position:absolute;left:clamp(28px,5vw,64px);bottom:clamp(24px,4vw,48px);display:flex;gap:14px;align-items:center;font-size:13px;opacity:.85;max-width:46%}
-.screen .qr b{flex:none;width:56px;height:56px;background:#fff;border-radius:8px;display:grid;place-items:center;color:var(--screen);font-size:24px}
-.screen .who{position:absolute;right:4%;bottom:-6%;width:clamp(220px,36%,420px)}
+.screen{background:var(--screen);color:#fff;border-radius:34px;overflow:hidden;
+  display:grid;grid-template-columns:1fr minmax(240px,40%);gap:24px;min-height:520px}
+.screen .txt{padding:clamp(32px,5vw,64px) 0 clamp(28px,4vw,48px) clamp(32px,5vw,64px);display:flex;flex-direction:column}
+.screen .face{font-size:clamp(96px,14vw,170px);line-height:1;font-weight:300;letter-spacing:-.02em}
+.screen .eyes{display:inline-block;transform-origin:50% 55%}
+.screen .msg{margin-top:clamp(20px,3vw,34px);font-size:clamp(20px,2.4vw,28px);line-height:1.45}
+.screen .prog{margin-top:clamp(14px,2.4vw,24px);font-size:clamp(14px,1.6vw,18px);opacity:.85}
+.screen .note{margin-top:auto;padding-top:28px;display:flex;gap:14px;align-items:center;font-size:13px;opacity:.9}
+.screen .note b{flex:none;width:52px;height:52px;background:#fff;border-radius:8px;display:grid;place-items:center;color:var(--screen);font-size:22px}
+.screen .pose{align-self:end;--disc:rgba(255,255,255,.16);margin-right:clamp(16px,4vw,48px)}
 @media (prefers-reduced-motion:no-preference){
-  .screen .face{animation:blink 5.5s steps(1) 1.2s infinite}
-  @keyframes blink{0%,96%{opacity:1}97%{opacity:.15}}
-  .screen .who{animation:rise .9s cubic-bezier(.2,.8,.2,1) .25s both}
-  @keyframes rise{from{transform:translateY(40%)}}
+  .screen .eyes{animation:blink 4.2s infinite}
+  @keyframes blink{0%,88%,100%{transform:scaleY(1)}91%{transform:scaleY(.08)}94%{transform:scaleY(1)}}
+  .screen .pose img{animation:rise .9s cubic-bezier(.2,.8,.2,1) .25s both}
+  @keyframes rise{from{transform:translateY(30%);opacity:0}}
 }
 
 /* 칸 */
 section{padding:110px 22px}
 .wrap{max-width:1000px;margin:auto}
-.h2{font-size:clamp(32px,5vw,56px);line-height:1.08;letter-spacing:-.04em;font-weight:700;text-align:center}
-.lead{font-size:clamp(18px,2vw,21px);color:var(--mute);text-align:center;margin:16px auto 0;max-width:32em;line-height:1.45}
+.h2{font-size:clamp(32px,5vw,56px);line-height:1.1;letter-spacing:-.04em;font-weight:700;text-align:center}
+.lead{font-size:clamp(18px,2vw,21px);color:var(--mute);text-align:center;margin:16px auto 0;line-height:1.5}
 
 /* 키트 */
-.kit{background:var(--mist);border-radius:30px;margin-top:56px;display:grid;grid-template-columns:1.1fr .9fr;align-items:end;overflow:hidden}
+.kit{background:var(--mist);border-radius:30px;margin-top:56px;display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:end;overflow:hidden}
 .kit .txt{padding:clamp(32px,5vw,60px)}
-.kit .tag{display:inline-block;font-size:13px;font-weight:600;color:var(--screen);background:#e3effa;padding:4px 10px;border-radius:999px}
-.kit h3{font-size:clamp(28px,3.6vw,40px);line-height:1.12;letter-spacing:-.035em;margin-top:14px}
-.kit p{color:var(--mute);margin-top:12px;font-size:18px;max-width:20em}
+.kit .tag{display:inline-block;font-size:13px;font-weight:600;color:var(--screen);background:var(--sky);padding:4px 10px;border-radius:999px}
+.kit h3{font-size:clamp(28px,3.6vw,40px);line-height:1.15;letter-spacing:-.035em;margin-top:14px}
+.kit p{color:var(--mute);margin-top:12px;font-size:18px;line-height:1.5}
 .kit ul{list-style:none;padding:0;margin:22px 0 28px;display:grid;gap:10px}
 .kit li{display:flex;gap:12px;align-items:baseline;font-size:17px}
-.kit li span{flex:none;font-weight:700;min-width:3.2em;color:var(--ink)}
-.kit .pic{align-self:end;justify-self:center;width:min(380px,90%)}
-.soon{margin-top:20px;border:1px solid var(--line);border-radius:30px;display:flex;align-items:center;gap:24px;padding:28px clamp(24px,4vw,44px) 0;overflow:hidden}
-.soon img{width:110px;align-self:flex-end}
-.soon h3{font-size:22px;letter-spacing:-.02em}
-.soon p{color:var(--mute);margin:4px 0 28px}
+.kit li span{flex:none;font-weight:700;min-width:3.2em}
+.kit .pose{justify-self:center;width:min(360px,88%);--disc:#e8e8ed}
 
 /* 받는 법 */
 .how{background:var(--mist)}
@@ -87,59 +93,53 @@ section{padding:110px 22px}
 .steps li{background:var(--paper);border-radius:24px;padding:30px 28px 0;display:flex;flex-direction:column;overflow:hidden}
 .steps .n{width:30px;height:30px;border-radius:50%;background:var(--screen);color:#fff;font-weight:700;display:grid;place-items:center;font-size:15px}
 .steps h3{font-size:21px;letter-spacing:-.02em;margin-top:16px}
-.steps p{color:var(--mute);margin-top:6px;font-size:16px}
-.steps code{font-family:inherit;font-weight:700;color:var(--ink);background:#e3effa;padding:1px 8px;border-radius:6px}
-.steps img{width:150px;margin:22px auto 0}
-
-/* 채널 */
-.about{text-align:center}
-.about .big{font-size:clamp(26px,3.6vw,40px);line-height:1.35;letter-spacing:-.03em;font-weight:650;max-width:22em;margin:auto}
-.about .big em{font-style:normal;color:var(--mute)}
-.facts{display:flex;justify-content:center;gap:clamp(24px,6vw,72px);margin-top:56px;flex-wrap:wrap}
-.facts div{font-size:15px;color:var(--mute);text-align:center}
-.facts b{display:block;font-size:30px;color:var(--ink);letter-spacing:-.03em}
+.steps p{color:var(--mute);margin-top:6px;font-size:16px;line-height:1.5}
+.steps code{font-family:inherit;font-weight:700;color:var(--ink);background:var(--sky);padding:1px 8px;border-radius:6px}
+.steps .pose{width:160px;margin:24px auto 0}
 
 /* 끝 */
 .end{background:var(--screen);color:#fff;text-align:center;padding:96px 22px 0;overflow:hidden}
 .end .h2{color:#fff}
-.end p{opacity:.85;font-size:19px;margin-top:12px}
+.end p{opacity:.88;font-size:19px;margin-top:14px;line-height:1.5}
 .end .btn{background:#fff;color:var(--screen);margin-top:28px}
 .end .btn:hover{background:#eaf3fc}
-.end img{width:200px;margin:48px auto 0}
+.end .pose{width:220px;margin:48px auto 0;--disc:rgba(255,255,255,.16)}
 footer{font-size:12px;color:var(--mute);background:var(--mist);padding:22px}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 @media (max-width:760px){
-  .nav .in{gap:18px}
+  .menu{display:none}
+  .brand{margin-right:auto}
   .hero{padding-top:56px}
-  .screen{aspect-ratio:auto;min-height:540px}
-  .screen .msg{max-width:none}
-  .screen .who{width:62%;right:-4%}
-  .screen .qr{display:none}
+  .screen{grid-template-columns:1fr;gap:0;min-height:0}
+  .screen .txt{padding:36px 28px 0}
+  .screen .note{display:none}
+  .screen .pose{width:68%;justify-self:end;margin:28px 8px 0 0}
   section{padding:80px 20px}
-  .kit{grid-template-columns:1fr}
-  .kit .pic{width:62%}
+  .kit{grid-template-columns:1fr;gap:0}
+  .kit .pose{width:64%}
   .steps{grid-template-columns:1fr}
   .steps li{flex-direction:row;align-items:flex-end;gap:12px;padding:24px 20px 0}
-  .steps li>div{padding-bottom:24px}
-  .steps img{width:96px;margin:0 0 0 auto}
-  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-  .facts div{font-size:13px}
-  .facts b{font-size:22px}
+  .steps li>div{padding-bottom:24px;flex:1;min-width:0}
+  .steps .pose{flex:none;width:100px;margin:0}
 }
 </style>
 </head>
 <body>
 
-<nav class="nav"><div class="in">
+<nav class="nav" aria-label="메뉴"><div class="in">
   <a class="brand" href="./"><i></i>블루스크린 AI</a>
-  <a class="l" href="#kits">키트</a>
-  <a class="l" href="https://www.instagram.com/bluescreen.ai/" rel="noopener">인스타그램</a>
+  <div class="menu">
+    <a href="#kits">키트</a>
+    <a href="#how">받는 법</a>
+    <a href="https://www.instagram.com/bluescreen.ai/" rel="noopener">인스타그램</a>
+  </div>
+  <a class="get" href="edit/">키트 받기</a>
 </div></nav>
 
 <header class="hero">
   <h1>AI로 만들고,<br>켜 두고, 다 보여 줘요.</h1>
-  <p class="sub">개발자가 아니어도 클로드로 직접 만든 것들. 쓴 프롬프트는 무료로 나눠 드려요.</p>
+  <p class="sub">개발자가 아니어도<br>클로드로 직접 만든 것들.<br>쓴 프롬프트는 무료로 나눠 드려요.</p>
   <div class="ctas">
     <a class="btn" href="edit/">편집 키트 받기</a>
     <a class="link" href="https://www.instagram.com/bluescreen.ai/" rel="noopener">릴스 보러 가기</a>
@@ -147,25 +147,27 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </header>
 
 <div class="stage">
-  <div class="screen" role="img" aria-label="파란 화면 앞에서 손을 흔드는 블루스크린 캐릭터">
-    <div class="face">:)</div>
-    <p class="msg">문제가 생겨도 괜찮아요. 고치는 과정까지 같이 보여 드릴게요.</p>
-    <p class="prog">100% 완료</p>
-    <div class="qr"><b>:)</b><span>멈춘 화면 말고, 끝까지 돌아가는 걸 만듭니다.<br>@bluescreen.ai</span></div>
-    <img class="who" src="img/wave.webp" alt="" width="653" height="900">
+  <div class="screen">
+    <div class="txt">
+      <div class="face" aria-hidden="true"><span class="eyes">:</span>)</div>
+      <p class="msg">문제가 생겨도 괜찮아요.<br>고치는 과정까지<br>같이 보여 드릴게요.</p>
+      <p class="prog">100% 완료</p>
+      <div class="note"><b aria-hidden="true">:)</b><span>멈춘 화면 말고,<br>끝까지 돌아가는 걸 만듭니다.</span></div>
+    </div>
+    <span class="pose"><img src="img/wave.webp" alt="손을 흔드는 블루스크린 캐릭터" width="653" height="900"></span>
   </div>
 </div>
 
 <section id="kits">
   <div class="wrap">
     <h2 class="h2">복사해서 바로 쓰는 키트</h2>
-    <p class="lead">릴스에서 보여 준 그대로 따라 할 수 있게, 쓴 프롬프트와 파일을 정리해 뒀어요.</p>
+    <p class="lead">릴스에서 보여 준 그대로 따라 할 수 있게,<br>쓴 프롬프트와 파일을 정리해 뒀어요.</p>
 
     <article class="kit">
       <div class="txt">
         <span class="tag">무료</span>
         <h3>클로드 영상 편집 키트</h3>
-        <p>편집 프로그램 없이, 클로드에게 붙여 넣는 것만으로 릴스 한 편.</p>
+        <p>편집 프로그램 없이,<br>클로드에게 붙여 넣는 것만으로<br>릴스 한 편.</p>
         <ul>
           <li><span>5줄</span>순서대로 붙여 넣는 프롬프트</li>
           <li><span>1개</span>색·글꼴·자막 위치를 고정하는 스타일 파일</li>
@@ -173,44 +175,28 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         </ul>
         <a class="btn" href="edit/">키트 받기</a>
       </div>
-      <img class="pic" src="img/laptop.webp" alt="노트북을 든 블루스크린 캐릭터" width="504" height="560" loading="lazy">
+      <span class="pose"><img src="img/laptop.webp" alt="노트북을 든 블루스크린 캐릭터" width="504" height="560" loading="lazy"></span>
     </article>
-
-    <div class="soon">
-      <div><h3>다음 키트는 만드는 중이에요</h3><p>나오면 인스타그램에서 먼저 알려 드려요.</p></div>
-      <img src="img/shh.webp" alt="" width="258" height="420" loading="lazy">
-    </div>
   </div>
 </section>
 
-<section class="how">
+<section class="how" id="how">
   <div class="wrap">
     <h2 class="h2">키트 받는 법</h2>
     <p class="lead">릴스마다 키워드가 하나씩 있어요.</p>
     <ol class="steps">
-      <li><div><span class="n">1</span><h3>릴스를 봐요</h3><p>끝에 나오는 키워드를 기억해 두세요.</p></div><img src="img/one.webp" alt="" width="272" height="420" loading="lazy"></li>
-      <li><div><span class="n">2</span><h3>댓글을 남겨요</h3><p>예를 들어 <code>편집</code> 한 단어면 돼요.</p></div><img src="img/phone.webp" alt="" width="322" height="420" loading="lazy"></li>
-      <li><div><span class="n">3</span><h3>DM으로 받아요</h3><p>링크가 바로 와요. 안 보이면 메시지 요청함을 확인하세요.</p></div><img src="img/thumb.webp" alt="" width="282" height="420" loading="lazy"></li>
+      <li><div><span class="n">1</span><h3>릴스를 봐요</h3><p>끝에 나오는 키워드를<br>기억해 두세요.</p></div><span class="pose"><img src="img/one.webp" alt="" width="272" height="420" loading="lazy"></span></li>
+      <li><div><span class="n">2</span><h3>댓글을 남겨요</h3><p>예를 들어 <code>편집</code><br>한 단어면 돼요.</p></div><span class="pose"><img src="img/phone.webp" alt="" width="322" height="420" loading="lazy"></span></li>
+      <li><div><span class="n">3</span><h3>DM으로 받아요</h3><p>링크가 바로 와요.<br>안 보이면 메시지 요청함을<br>확인하세요.</p></div><span class="pose"><img src="img/thumb.webp" alt="" width="282" height="420" loading="lazy"></span></li>
     </ol>
-  </div>
-</section>
-
-<section class="about">
-  <div class="wrap">
-    <p class="big">팁만 말하지 않아요. <em>직접 만든 서비스를 켜 두고, 드는 돈과 고장 난 날과 들어온 사람 수까지 숫자로 공개해요.</em></p>
-    <div class="facts">
-      <div><b>0번</b>편집 프로그램을 연 횟수</div>
-      <div><b>12분</b>빈 폴더에서 첫 영상까지</div>
-      <div><b>-14 LUFS</b>인스타 기준 소리</div>
-    </div>
   </div>
 </section>
 
 <section class="end">
   <h2 class="h2">새 키트 소식 받기</h2>
-  <p>@bluescreen.ai 를 팔로우하면 제일 먼저 알 수 있어요.</p>
+  <p>@bluescreen.ai 를 팔로우하면<br>제일 먼저 알 수 있어요.</p>
   <a class="btn" href="https://www.instagram.com/bluescreen.ai/" rel="noopener">인스타그램 팔로우</a>
-  <img src="img/v.webp" alt="" width="379" height="520" loading="lazy">
+  <span class="pose"><img src="img/v.webp" alt="" width="379" height="520" loading="lazy"></span>
 </section>
 
 <footer><div class="wrap"><span>© 2026 블루스크린 AI</span><span>클로드는 Anthropic의 상표이며, 이 페이지는 Anthropic과 관련이 없습니다.</span></div></footer>
