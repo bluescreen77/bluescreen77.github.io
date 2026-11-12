@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>클로드 영상 편집 키트 · 블루스크린 AI</title>
+<meta name="description" content="편집 프로그램 없이 클로드로 릴스 만들기 — AI 티 안 나게 하는 프롬프트 5줄, 스타일 파일, 효과 이름 사전. 무료.">
+<link rel="icon" href="/edit/img/icon.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="/nav.css">
+<style>
+:root { --bg:#EEF0F3; --ink:#16171a; --sub:#5b5d66; --blue:#0078D7; --blue-d:#005a9e; --blue-l:rgba(0,120,215,.10); --card:#fff; --line:#e2e4ea; }
+* { box-sizing:border-box; }
+html { scroll-padding-top:64px; }
+body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 "Pretendard Variable","Pretendard",system-ui,sans-serif; -webkit-text-size-adjust:100%; word-break:keep-all; overflow-wrap:anywhere; }
+main { max-width:740px; margin:0 auto; padding:24px 16px 72px; }
+a { color:var(--blue); }
+img { display:block; }
+code { font:13px ui-monospace,Consolas,monospace; background:var(--blue-l); color:#00539a; border-radius:5px; padding:1px 6px; }
+
+/* 맨 위 — 창 모양 카드 + 손 흔드는 캐릭터 */
+.win { background:var(--card); border-radius:16px; box-shadow:0 1px 0 var(--line), 0 18px 40px -24px rgba(0,40,90,.35); overflow:hidden; }
+.bar { display:flex; align-items:center; gap:8px; height:40px; padding:0 0 0 14px; border-bottom:1px solid var(--line); font-size:13px; color:var(--sub); }
+.bar i { width:14px; height:14px; border-radius:3px; background:var(--blue); }
+.bar span { flex:1; }
+.bar b { width:44px; text-align:center; font-weight:400; color:#888; }
+.hero { position:relative; display:grid; grid-template-columns:1fr 170px; gap:8px; padding:22px 20px 0; }
+.hero .tag { display:inline-block; background:var(--blue-l); color:var(--blue-d); border-radius:999px; padding:3px 12px; font-weight:800; font-size:13px; }
+h1 { font-size:31px; line-height:1.28; margin:12px 0 10px; letter-spacing:-.6px; }
+mark { background:linear-gradient(transparent 58%, rgba(0,120,215,.25) 58%); color:inherit; padding:0 2px; }
+.lead { color:var(--sub); margin:0 0 16px; }
+.hero .me { align-self:end; position:relative; }
+.hero .me img { width:100%; height:auto; }
+.hero .me .bubble { width:max-content; margin:0 auto 12px; white-space:nowrap; }
+.chips { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 20px; }
+.chips span { background:#f4f5f8; border:1px solid var(--line); border-radius:999px; padding:3px 11px; font-weight:700; font-size:13px; }
+
+/* 말풍선 */
+.bubble { position:relative; background:var(--card); border:2px solid var(--ink); border-radius:16px; padding:10px 14px; font-size:15px; line-height:1.55; margin:0; }
+.bubble::after { content:""; position:absolute; right:-9px; bottom:18px; width:14px; height:14px; background:var(--card); border:2px solid var(--ink); border-left:0; border-bottom:0; transform:rotate(45deg); }
+.hero .bubble { font-weight:800; font-size:14px; padding:6px 12px; }
+.hero .bubble::after { right:auto; left:calc(50% - 6px); bottom:-8px; top:auto; width:12px; height:12px; transform:rotate(135deg); }
+
+/* 단계 */
+h2 { font-size:21px; margin:44px 0 12px; letter-spacing:-.3px; display:flex; align-items:center; gap:10px; }
+h2 .n { flex:none; width:32px; height:32px; border-radius:10px; background:var(--blue); color:#fff; font-size:17px; display:grid; place-items:center; }
+.card { background:var(--card); border-radius:14px; padding:18px; box-shadow:0 1px 0 var(--line); margin:12px 0; }
+.say { display:flex; align-items:flex-end; gap:14px; margin:12px 0 0; }
+.say .bubble { flex:1; min-width:0; }
+.say img { flex:none; width:96px; height:auto; }
+.say.l { flex-direction:row-reverse; }
+.say.l .bubble::after { right:auto; left:-9px; transform:rotate(-135deg); }
+.why { color:var(--sub); font-size:15px; margin:6px 0 0; }
+ul { padding-left:20px; margin:8px 0; } li { margin:4px 0; }
+.ready { display:grid; grid-template-columns:1fr 120px; gap:12px; align-items:end; }
+.ready img { width:100%; height:auto; }
+
+.code { position:relative; background:#1b1c21; color:#e9e9ee; border-radius:12px; padding:46px 16px 16px; margin:10px 0 4px; font:14px/1.65 ui-monospace,Consolas,monospace; white-space:pre-wrap; word-break:break-word; }
+.code::before { content:"클로드에게 붙여 넣기"; position:absolute; top:12px; left:16px; font:700 12px "Pretendard",sans-serif; color:#8d8f99; letter-spacing:.2px; }
+.copy { position:absolute; top:8px; right:8px; border:0; border-radius:8px; background:var(--blue); color:#fff; font:700 13px "Pretendard",sans-serif; padding:6px 14px; cursor:pointer; }
+.copy:hover { background:#1a88e0; }
+.copy:focus-visible { outline:3px solid #fff; outline-offset:2px; }
+
+table { width:100%; border-collapse:collapse; font-size:15px; }
+th, td { text-align:left; padding:9px 6px; border-bottom:1px solid var(--line); vertical-align:top; }
+th { font-size:13px; color:var(--sub); font-weight:700; }
+tr:last-child td { border-bottom:0; }
+
+.faqhead { display:flex; align-items:flex-end; justify-content:space-between; margin-top:44px; }
+.faqhead h2 { margin:0 0 12px; }
+.faqhead img { width:84px; height:auto; }
+details { background:var(--card); border-radius:12px; padding:12px 16px; margin:8px 0; }
+details[open] { box-shadow:inset 3px 0 0 var(--blue); }
+summary { font-weight:700; cursor:pointer; }
+details p { margin:8px 0 2px; color:#33343a; }
+
+.end { margin-top:40px; background:var(--ink); color:#fff; border-radius:16px; padding:22px 20px 0; display:grid; grid-template-columns:1fr 120px; gap:12px; align-items:end; }
+.end p { margin:0 0 6px; }
+.end .free { font-size:20px; font-weight:800; letter-spacing:-.3px; }
+.end .next { color:#c9cad1; padding-bottom:20px; }
+.end a { color:#6cb8ff; }
+.end img { width:100%; height:auto; background:#fff; border-radius:60px 60px 0 0; padding:10px 10px 0; }
+footer { margin-top:16px; color:var(--sub); font-size:13px; text-align:center; }
+
+.toast { position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:#1c1c1f; color:#fff; padding:10px 18px; border-radius:999px; font-weight:700; opacity:0; transition:opacity .2s; pointer-events:none; }
+.toast.on { opacity:1; }
+
+@media (max-width:560px) {
+  h1 { font-size:26px; }
+  .hero { grid-template-columns:1fr 112px; padding:18px 16px 0; }
+  .hero .me .bubble { display:none; }
+  .say img { width:76px; }
+  .ready { grid-template-columns:1fr 84px; }
+  .end { grid-template-columns:1fr 90px; }
+}
+@media (prefers-reduced-motion:no-preference) {
+  .hero .me img { animation:wave 2.4s ease-in-out .4s 2; transform-origin:50% 100%; }
+  @keyframes wave { 0%,100% { transform:rotate(0); } 25% { transform:rotate(-3deg); } 75% { transform:rotate(3deg); } }
+}
+</style>
+</head>
+<body>
+<nav class="gnav flat" aria-label="사이트">
+  <div class="in">
+    <a class="logo" href="/"><i></i>블루스크린 AI</a>
+    <div class="links" id="gl">
+      <a href="/#kits">키트</a>
+      <a href="/#how">받는 법</a>
+      <a class="m-cta" href="https://www.instagram.com/bluescreen.ai/" rel="noopener">인스타그램 팔로우</a>
+    </div>
+    <a class="cta" href="https://www.instagram.com/bluescreen.ai/" rel="noopener">팔로우</a>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="gl" aria-label="메뉴 열기"><span></span></button>
+  </div>
+</nav>
+<div class="lnav"><div class="in">
+  <strong>영상 편집 키트</strong>
+  <a class="pc" href="#ready">준비물</a>
+  <a class="pc" href="#s1">프롬프트</a>
+  <a class="pc" href="#dict">효과 사전</a>
+  <a href="#faq">막히면</a>
+  <a class="go" href="#s1">1번부터</a>
+</div></div>
+<main>
+<header class="win">
+  <div class="bar"><i></i><span>edit-kit.md — 블루스크린 AI</span><b>―</b><b>☐</b><b>✕</b></div>
+  <div class="hero">
+    <div>
+      <span class="tag">블루스크린 AI · 무료 키트</span>
+      <h1>클로드로 만든 영상,<br><mark>AI 티</mark> 안 나게 하는 5줄</h1>
+      <p class="lead">편집 프로그램을 한 번도 안 열고 릴스를 만드는 방법이에요. 아래 프롬프트 5줄을 차례로 복사해서 클로드에게 붙여 넣으면 됩니다.</p>
+      <div class="chips"><span>편집 프로그램 0번</span><span>프롬프트 5줄</span><span>빈 폴더에서 검증함</span><span>윈도우·맥</span></div>
+    </div>
+    <div class="me"><p class="bubble">복사만 하세요!</p><img src="/edit/img/wave.webp" width="348" height="480" alt="손 흔드는 블루스크린 캐릭터"></div>
+  </div>
+</header>
+
+<h2 id="ready">먼저 준비물</h2>
+<div class="card ready">
+  <div>
+  <ul>
+    <li><b>Claude 데스크톱 앱의 Claude Code</b> — 유료 요금제가 필요해요. 어느 요금제부터 되는지는 바뀐 적이 있어서 <a href="https://claude.com/pricing">claude.com/pricing</a>에서 확인하세요.</li>
+    <li><b>Node.js 22 이상</b>, <b>FFmpeg</b> — 몰라도 괜찮아요. 1번 프롬프트가 확인하고 깔아 줍니다.</li>
+    <li><b>HyperFrames</b> — HTML을 영상(mp4)으로 바꾸는 무료 오픈소스(HeyGen). 따로 받을 필요 없이 <code>npx</code>로 실행돼요.</li>
+    <li>새 폴더 하나 (예: <b>AI영상</b>) — Claude Code에서 이 폴더를 열고 시작하세요.</li>
+  </ul>
+  <p class="why">빈 폴더에서 이 5줄을 처음부터 따라 해 봤어요: 끝까지 약 12분, 30초 영상 렌더 46초, 결과 1080×1920 · -14.1 LUFS (윈도우 11, 2026-11-11).</p>
+  </div>
+  <img src="/edit/img/laptop.webp" width="288" height="320" alt="">
+</div>
+
+<h2 id="s1"><span class="n">1</span>도구 깔고 확인</h2>
+<div class="code"><button class="copy">복사</button>이 폴더에서 세로 릴스(1080×1920)를 만들 거야. Node.js 22 이상, FFmpeg가 있는지 확인하고 없으면 설치해 줘. 그다음 npx hyperframes init 릴스 --example blank --resolution portrait --non-interactive 로 프로젝트를 만들고, npx hyperframes doctor 결과를 보여 줘. Node.js·FFmpeg·Chrome 말고 Docker·whisper·TTS·MusicGen 같은 선택 항목은 깔지 마.</div>
+<div class="say"><p class="bubble">doctor 결과에서 <b>Node.js·FFmpeg·Chrome 줄이 빨간색일 때만</b> 그 줄을 클로드에게 붙여 넣으세요. Docker·TTS·whisper·MusicGen·Version 줄은 이 키트에 필요 없어서 무시해도 됩니다.</p><img src="/edit/img/one.webp" width="207" height="320" alt=""></div>
+
+<h2><span class="n">2</span><span>바로 만들지 말고 <mark>장면표</mark>부터</span></h2>
+<div class="code"><button class="copy">복사</button>주제는 「여기에 주제」. 바로 만들지 말고 장면표부터 보여 줘. 장면마다 자막 한 줄(띄어쓰기 포함 14자 안), 보여 줄 화면 하나, 길이(초). 전체 30초 안. 첫 장면은 3초 안에 궁금해지게.</div>
+<div class="say l"><p class="bubble">AI 티의 절반은 순서 문제예요. 장면표에서 고치면 렌더를 다시 돌릴 일이 줄어요. 「3번 장면 자막 더 짧게」처럼 말로 고치세요.</p><img src="/edit/img/palm.webp" width="256" height="320" alt=""></div>
+
+<h2><span class="n">3</span><span>스타일은 <mark>파일 하나</mark>로 고정</span></h2>
+<div class="code"><button class="copy">복사</button>스타일.md 파일을 만들어 줘. 바탕색 1개와 강조색 1개(글자는 흰색 또는 검정 하나), 글꼴 1개(Pretendard 굵게 — @font-face 로 https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/woff2/Pretendard-ExtraBold.woff2 를 불러와), 자막은 위 250px 바로 아래에 한 줄(띄어쓰기 포함 14자 안), 낱말 중간에서 줄 바꾸지 않기. 위 250px·아래 440px·오른쪽 140px는 비워 두기(인스타 버튼 자리). 첫 프레임에 제목이 보이게. 앞으로 모든 영상은 이 파일을 따라 줘.</div>
+<div class="say"><p class="bubble">색이 많고 글꼴이 섞이면 AI 티가 나요. 파일로 고정해 두면 매번 같은 채널처럼 보입니다. 비워 두는 자리는 릴스 화면의 좋아요·댓글 버튼과 캡션이 덮는 곳이에요.</p><img src="/edit/img/arms.webp" width="184" height="320" alt=""></div>
+
+<h2><span class="n">4</span><span>「멋있게」 말고 <mark>효과 이름</mark>으로</span></h2>
+<div class="code"><button class="copy">복사</button>2번 장면으로 넘어갈 때 휩 팬(whip-pan-cut)을 쓰고, 숫자는 0부터 올라가게(count-up), 자막은 낱말마다 강조색이 차례로 들어가게(caption-highlight) 해 줘. npx hyperframes catalog 로 찾아서 npx hyperframes add &lt;이름&gt; --no-clipboard 로 넣고, 가로(1920×1080)로 된 것은 세로·한글·스타일.md 에 맞게 고쳐 줘.</div>
+<div class="say l"><p class="bubble">「멋있게 해 줘」는 매번 다르게 나오고, 이름을 대면 그대로 나와요. 이름은 아래 사전에서 고르세요.</p><img src="/edit/img/down.webp" width="238" height="320" alt=""></div>
+
+<h2><span class="n">5</span><span>소리 맞추고, <mark>사진으로 먼저</mark> 확인</span></h2>
+<div class="code"><button class="copy">복사</button>효과음은 장면이 바뀔 때만 넣고 배경음은 작게(소리 파일은 ffmpeg 로 직접 만들어도 돼, 유료 서비스는 쓰지 마. &lt;audio&gt; 마다 id 를 붙여). npx hyperframes check 로 오류를 먼저 없애고, npx hyperframes snapshot --at &lt;장면마다 한 시각&gt; -o 사진 으로 장면 사진을 보여 줘. 내가 괜찮다고 하면 렌더하고, ffmpeg loudnorm 을 두 번 돌려(two-pass) -14 LUFS 에 맞춰서 Exports 폴더에 저장한 뒤 ebur128 로 잰 값을 알려 줘.</div>
+<div class="say"><p class="bubble">인스타는 소리를 약 -14 LUFS로 맞춥니다(릴스 135편을 잰 편집자 측정, r/VideoEditing). 미리 맞추면 작게 묻히지 않아요. 장면 사진은 <b>사진</b> 폴더에 저장됩니다.</p><img src="/edit/img/thumb.webp" width="215" height="320" alt=""></div>
+
+<h2 id="dict">효과 이름 사전</h2>
+<div class="card">
+  <p class="why" style="margin-top:0">HyperFrames 공식 목록(v0.8.206)에 실제로 있는 이름만 골랐어요. 「이름」을 프롬프트에 그대로 넣으면 됩니다.</p>
+  <table>
+    <tr><th>이렇게 보여요</th><th>이름</th><th>언제</th></tr>
+    <tr><td>휙 넘기는 장면 전환</td><td><code>whip-pan-cut</code></td><td>단계가 넘어갈 때</td></tr>
+    <tr><td>숫자가 0부터 올라감</td><td><code>count-up</code></td><td>숫자 강조</td></tr>
+    <tr><td>원이 열리며 다음 장면</td><td><code>iris-reveal</code></td><td>결과 공개</td></tr>
+    <tr><td>클릭하는 곳으로 확대</td><td><code>cursor-zoom-follow</code></td><td>화면 녹화 설명</td></tr>
+    <tr><td>손으로 든 듯 흔들림</td><td><code>camera-shake</code></td><td>놀람·충격</td></tr>
+    <tr><td>초점이 앞에서 뒤로</td><td><code>focus-rack</code></td><td>둘을 비교할 때</td></tr>
+    <tr><td>제목이 쾅 떨어짐</td><td><code>headline-slam</code></td><td>첫 장면 훅</td></tr>
+    <tr><td>낱말마다 강조색</td><td><code>caption-highlight</code></td><td>자막 기본</td></tr>
+    <tr><td>한 낱말씩 화면 가득</td><td><code>caption-kinetic-slam</code></td><td>짧고 센 문장</td></tr>
+    <tr><td>형광펜이 그어짐</td><td><code>inline-highlight</code></td><td>핵심 낱말</td></tr>
+  </table>
+  <p class="why"><b>가로(1920×1080)로 만들어진 것</b> — 쓰려면 「세로로 고쳐 줘」를 덧붙이세요: 줌 블러 전환 <code>cinematic-zoom</code>, 지지직 전환 <code>glitch</code>, 빛 번짐 <code>light-leak</code>, 공항 전광판 숫자 <code>split-flap-board</code>, 박자 멈춤 컷 <code>beat-freeze-cut</code>. 그리고 위 표의 자막 효과도 처음엔 영어·가로 기준이라 「한글·세로·스타일.md 에 맞게」 고치게 됩니다.</p>
+  <p class="why">전체 목록은 <code>npx hyperframes catalog</code> — 448개가 나와요.</p>
+</div>
+
+<div class="faqhead" id="faq"><h2>막히면</h2><img src="/edit/img/scratch.webp" width="266" height="320" alt=""></div>
+<details><summary>무료로 되나요?</summary><p>도구(HyperFrames·FFmpeg·Node.js)는 무료예요. Claude Code를 쓰려면 Claude 유료 요금제가 필요합니다.</p></details>
+<details><summary>윈도우도 되나요? 맥 전용 아니에요?</summary><p>둘 다 돼요. 이 키트는 윈도우 11에서 만들었습니다.</p></details>
+<details><summary>한글 자막이 어색하게 끊겨요</summary><p>「자막은 한 줄 14자 안, 낱말 중간에서 줄 바꾸지 마」라고 스타일.md에 적어 두세요.</p></details>
+<details><summary>렌더가 너무 오래 걸려요</summary><p>먼저 snapshot으로 사진만 확인하고, 다 고친 뒤 한 번만 렌더하세요. 30초 영상이 저희 컴퓨터에서 46초~2분 걸렸어요.</p></details>
+<details><summary>doctor에 빨간 줄이 많아요</summary><p>Docker·TTS·whisper·MusicGen·Version 줄은 이 키트에 필요 없어요. Node.js·FFmpeg·Chrome만 초록이면 됩니다.</p></details>
+<details><summary>렌더한 영상에 소리가 없어요</summary><p>&lt;audio&gt;에 id가 없으면 렌더에서 빠집니다. 렌더 전에 <code>npx hyperframes check</code>를 돌리세요.</p></details>
+<details><summary>글꼴이 기본 글꼴로 나와요</summary><p>Pretendard는 링크만 걸면 안 되고 @font-face로 woff2 파일을 불러와야 해요. 3번 프롬프트에 주소가 들어 있습니다.</p></details>
+<details><summary>효과가 가로 화면으로 나와요</summary><p>목록의 상당수가 1920×1080 가로예요. 「세로·스타일.md에 맞게 고쳐 줘」라고 하세요.</p></details>
+<details><summary>숫자가 중간에 사라져요</summary><p>효과 안쪽 길이가 장면보다 짧아서예요. 「count-up 길이를 장면 길이에 맞춰 줘」라고 하세요.</p></details>
+<details><summary>-14 LUFS가 안 맞아요 (-20, -15가 나와요)</summary><p>목소리 없이 배경음만 작으면 너무 조용해서 한 번에 안 맞아요. loudnorm을 두 번 돌리거나 배경음을 조금 키운 뒤 다시 하세요. 저희는 두 번 돌려 -14.1이 나왔어요.</p></details>
+<details><summary>장면 사진이 어디 있어요?</summary><p>5번 프롬프트처럼 <code>-o 사진</code>을 붙이면 「사진」 폴더에 저장돼요. 안 붙이면 숨김 폴더(.hyperframes)에 들어갑니다.</p></details>
+<details><summary>남이 잘 만든 영상을 내려받아 따라 해도 되나요?</summary><p>남의 영상을 내려받는 건 플랫폼 약관에 걸릴 수 있어요. 링크를 보면서 「색·자막 위치·장면 길이」처럼 특징만 적어 클로드에게 주세요. 베끼지 말고 영감만.</p></details>
+<details><summary>Remotion도 쓰라던데요?</summary><p>Remotion은 회사 규모에 따라 유료 라이선스가 필요할 수 있어요. 이 키트는 HyperFrames만으로 무료로 됩니다.</p></details>
+
+<section class="end">
+  <div>
+    <p class="free">이 키트는 무료예요. 돈 받지 않습니다.</p>
+    <p>더 좋은 방법을 찾으면 이 페이지를 고쳐 둘게요.</p>
+    <p class="next">다른 키트: <a href="/">bluescreen.page</a> · 인스타 <a href="https://www.instagram.com/bluescreen.ai/">@bluescreen.ai</a></p>
+  </div>
+  <img src="/edit/img/v.webp" width="233" height="320" alt="브이 하는 블루스크린 캐릭터">
+</section>
+<footer>2026-11-11 · 블루스크린 AI</footer>
+</main>
+<div class="toast" role="status" aria-live="polite">복사했어요</div>
+<script>
+const toast = document.querySelector('.toast');
+document.querySelectorAll('.copy').forEach(b => b.addEventListener('click', async () => {
+  const text = b.parentElement.textContent.replace(/^복사됨?/, '').trim();
+  try { await navigator.clipboard.writeText(text); } catch (e) {
+    const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove();
+  }
+  b.textContent = '복사됨'; setTimeout(() => b.textContent = '복사', 1400);
+  toast.classList.add('on'); setTimeout(() => toast.classList.remove('on'), 1400);
+}));
+</script>
+<script>
+(() => { const n = document.querySelector('.gnav'), b = n.querySelector('.menu');
+  b.addEventListener('click', () => { const o = n.classList.toggle('open'); b.setAttribute('aria-expanded', o); b.setAttribute('aria-label', o ? '메뉴 닫기' : '메뉴 열기'); });
+  n.querySelectorAll('.links a').forEach(a => a.addEventListener('click', () => { n.classList.remove('open'); b.setAttribute('aria-expanded', false); }));
+})();
+</script>
+</body>
+</html>
